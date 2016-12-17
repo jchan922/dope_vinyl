@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load staticfiles %}
+        <title>Product Page</title>
+        <script>
+        function total(quantity, price){
+           alert(document.frm.quantity.value * document.frm.price.value);
+        }
+        </script>
+        <link rel="stylesheet" href="{% static '/dope_vinyl/css/front_productpage.css' %}" media="screen" title="no title">
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="nav_bar">
+            <h3 id="h3">Dope.</h3>
+            <a href="/carts">Shopping Cart ({{length}})</a>
+        </div>
+
+
+        <a id="go_back" href="/front_allproducts">Go Back</a>
+
+        <h2 id="h2">{{product.artist.name}} - {{product.title}}</h2>
+
+        <img id="thumbnail" src="/static/dope_vinyl/imgs/uploaded_media/{{product.image}}" alt="" />
+
+        <div id="content">
+            <p id="content_description">
+                {{product.description}}
+            </p>
+            <form mane='frm' action="/front_productpage/buy/{{product.id}}" method="post">
+                {% csrf_token %}
+                <select class="custom-select">
+                    <option value="1">${{product.price}}</option>
+                    <!-- <option value="2">2  ${{product.price}}</option>
+                    <option value="3">3  ${{product.price}}</option> -->
+                </select>
+                <input id="buy" class="btn btn-info" type="submit" value="Buy">
+                {% if messages %}
+                  {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}> {{message}}</p>
+                  {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+        <h4 id="h4">Similar Items</h4>
+        <ul>
+           {% for product in similar_products %}
+            <li><a id='similar' href="/front_productpage/show/{{product.id}}"><img id='similar' src="/static/dope_vinyl/imgs/uploaded_media/{{product.image}}" alt="">{{product.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

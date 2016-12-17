@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load staticfiles %}
+        <title>All Products</title>
+        <!-- <link rel="stylesheet" href="./../css/front_allproducts.css" media="screen" title="no title"> -->
+        <link rel="stylesheet" href="{% static '/dope_vinyl/css/front_allproducts.css' %}" media="screen" title="no title">
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="nav_bar">
+            <h3 id="h3">Dope.</h3>
+              <a href="/carts">Shopping Cart ({{length}})</a>
+        </div>
+
+        <div id="left_box">
+            <form class="" action="front_allproducts" name="search_title" method="GET">
+                {% csrf_token %}
+                <input id="search" type="text" name="search_title" placeholder="Search">
+                <input type="submit" value="&#x1f50e;">
+            </form>
+            <h4>Categories</h4>
+            <ul>
+               {% for genre in genres %}
+               <li><a href="front_allproducts/category/{{genre.id}}">{{genre.genre_type}}</a></li>
+               {% endfor %}
+               <li><a href="/front_allproducts">Show All</a>
+            </ul>
+        </div>
+        <div id="main">
+            <div id="main_top">
+                <form id="form" name="sort" method="POST">
+                   {% csrf_token %}
+                        <select class="custom-select" name="sort" onchange="form.submit()">
+                           <option value="title" {% if sort_current == 'title' %}selected{% endif %}>Title</option>
+                           <option value="artist" {% if sort_current == 'artist' %}selected{% endif %}>Artist Name</option>
+                           <option value="price" {% if sort_current == 'price' %}selected{% endif %}>Price (L-H)</option>
+                        </select>
+                </form>
+                <div id="pagination1">
+                  <span class="step-links">
+                     {% if products.has_previous %}
+                     <a href="?page={{products.previous_page_number}}">prev</a>
+                     {% else %}
+                     <span>prev</span>
+                     {% endif %}
+                     <span class="current">
+                     | {{products.number}} |
+                     </span>
+                     {% if products.has_next %}
+                     <a href="?page={{products.next_page_number}}">next</a>
+                     {% else %}
+                     <span>next</span>
+                     {% endif %}
+                  </span>
+               </div>
+            </div>
+            <div id="records">
+               <ul id="main_thumbnails">
+                  {% for product in products %}
+                  <a href="/front_productpage/show/{{product.id}}"><li><img id="images" src="/static/dope_vinyl/imgs/uploaded_media/{{product.image}}"><p class="title">{{product.artist.name}} - {{product.title}}</p></li></a>
+                  {% endfor %}
+               </ul>
+            </div>
+            <div class="pagination2">
+               <span class="step-links">
+                  {% if products.has_previous %}
+                  <a href="?page={{products.previous_page_number}}">previous</a>
+                  {% endif %}
+                  <span class="current">
+                  Page {{products.number}} of {{products.paginator.num_pages}}
+                  </span>
+                  {% if products.has_next %}
+                  <a href="?page={{products.next_page_number}}">next</a>
+                  {% endif %}
+               </span>
+            </div>
+        </div>
+    </body>
+</html>

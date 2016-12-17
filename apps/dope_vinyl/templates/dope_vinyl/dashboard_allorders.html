@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Dashboard Orders</title>
+    {% load staticfiles %}
+    <!-- <link rel="stylesheet" type="text/css" href="./../css/dashboard_allorders.css"> -->
+    <link rel="stylesheet" href="{% static '/dope_vinyl/css/dashboard_allorders.css' %}" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+        <h4 id="logo">Dope.</h4>
+        <a href="/dashboard/orders">Orders</a>
+        <a href="/dashboard/products">Products</a>
+        <a id="logoff" href="/adminlogout">log off</a>
+    </div>
+
+    <form id="search_form" action="" method="GET">
+        {% csrf_token %}
+        <input id="search_bar" type='search' name="search" placeholder="Search">
+    </form>
+    <form name="pfilter" id="select_form"  method="POST">
+        {% csrf_token %}
+        <select name="pfilter" id="dropdown" class="custom-select" onchange="form.submit()">
+            <option value="showall" {% if prod_filter == 'showall' %}selected{% endif %}>Show All</option>
+            <option value="Order In Process" {% if prod_filter == 'Order In Process' %}selected{% endif %}>Order In Process</option>
+            <option value="Cancelled" {% if prod_filter == 'Cancelled' %}selected{% endif %}>Cancelled</option>
+            <option value="Shipped" {% if prod_filter == 'Shipped' %}selected{% endif %}>Shipped</option>
+        </select>
+    </form>
+
+     <!-- testing ... -->
+     {% if messages %}
+       {% for msg in messages %}
+         <h1>{{msg.message}}</h1>
+       {% endfor %}
+     {% endif %}
+     <!-- testing ... -->
+      <div id="content">
+         <table>
+            <tr>
+               <th id="order">Order ID</th>
+               <th id="name">Name</th>
+               <th id="date">Date</th>
+               <th id="address">Billing Address</th>
+               <th id="total">Total</th>
+               <th id="status">Status</th>
+            </tr>
+            {% for order in orders %}
+            <tr>
+                <td><a href="/dashboard/orders/show/{{order.id}}">{{order.id}}</a></td>
+                <td>{{order.billing.bill_first_name}}</td>
+                <td>{{order.billing.created_at}}</td>
+                <td>{{order.billing.bill_address1}}, {{order.billing.bill_address2}} {{order.billing.bill_state}} {{order.billing.bill_zip}}</td>
+                <td>${{order.total}}</td>
+                <td>
+                  <form name="status" action="/dashboard/orders/order_status/{{order.id}}" method="POST">
+                     {% csrf_token %}
+                       <select class="custom-select" onchange="form.submit()" name="status">
+                           <option value="Order In Process" {% if order.status == "Order In Process" %}selected{% endif %}>Order in Process</option>
+                           <option value="Cancelled" {% if order.status == "Cancelled" %}selected{% endif %}>Cancelled</option>
+                           <option value="Shipped" {% if order.status == "Shipped" %}selected{% endif %}>Shipped</option>
+                       </select>
+                   </form>
+                </td>
+            </tr>
+            {% endfor %}
+         </table>
+      </div>
+   </div>
+</body

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load staticfiles %}
+        <title>All Products</title>
+        <!-- <link rel="stylesheet" href="./../css/front_shoppingcart.css" media="screen" title="no title"> -->
+        <link rel="stylesheet" href="{% static '/dope_vinyl/css/front_shoppingcart.css' %}" media="screen" title="no title">
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+        <script type="text/javascript" src ='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+        <script type="text/javascript">
+          Stripe.setPublishableKey('pk_test_oM6TfazDfjAN0q5LsbbdsQ0L');
+        </script>
+        <script>
+          $(document).ready(function(){
+            $("input[type=checkbox]").change(function(){
+              console.log('change');
+              if (this.checked) {
+                console.log('checked');
+                $("[name='bill_first_name']").val($("[name='ship_first_name']").val());
+                $("[name='bill_last_name']").val($("[name='ship_last_name']").val());
+                $("[name='bill_address1']").val($("[name='ship_address1']").val());
+                $("[name='bill_address2']").val($("[name='ship_address2']").val());
+                $("[name='bill_city']").val($("[name='ship_city']").val());
+                $("[name='bill_state']").val($("[name='ship_state']").val());
+                $("[name='bill_zip']").val($("[name='ship_zip']").val());
+              }
+              });
+          });
+
+          Stripe.setPublishableKey('pk_test_oM6TfazDfjAN0q5LsbbdsQ0L');
+           function stripeResponseHandler(status, response) {
+               if (response.error) {
+                   // re-enable the submit button
+                   $('.submit-button').removeAttr("disabled");
+                   // show the errors on the form
+                   $(".payment-errors").html(response.error.message);
+               } else {
+                   var form$ = $("#payment-form");
+                   // token contains id, last4, and card type
+                   var token = response['id'];
+                   // insert the token into the form so it gets submitted to the server
+                   form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                   // and submit
+                   form$.get(0).submit();
+               }
+           }
+           $(document).ready(function() {
+               $("#payment-form").submit(function(event) {
+                   // disable the submit button to prevent repeated clicks
+                   $('.submit-button').attr("disabled", "disabled");
+                   var chargeAmount = 1000; //amount you want to charge, in cents. 1000 = $10.00, 2000 = $20.00 ...
+                   // createToken returns immediately - the supplied callback submits the form if there are no errors
+                   Stripe.createToken({
+                       number: $('.card-number').val(),
+                       cvc: $('.card-cvc').val(),
+                       exp_month: $('.card-expiry-month').val(),
+                       exp_year: $('.card-expiry-year').val()
+                   }, chargeAmount, stripeResponseHandler);
+                   return false; // submit from callback
+               });
+           });
+           if (window.location.protocol === 'file:') {
+               alert("stripe.js does not work when included in pages served over file:// URLs. Try serving this page over a webserver. Contact support@stripe.com if you need assistance.");
+           }
+       </script>
+    </head>
+    <body>
+        <div id="nav_bar">
+            <h3 id="h3">Dope.</h3>
+            <a href="/carts">Shopping Cart ({{length}})</a>
+        </div>
+        <div id="order_list">
+            <table>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th></th>
+              </tr>
+              {% for key,value,price in cart_list %}
+              <tr>
+                <td>{{key.artist.name}} - {{key.title}}</td>
+                <td>${{key.price}}</td>
+                <td>{{value}}</td>
+                <td>${{price}}</td>
+                <td><a href="/deletecart_item/{{key.id}}">delete</a></td>
+                <!-- <a href="#">update</a>  -->
+              </tr>
+              {% endfor %}
+            </table>
+            <h5 id="h5">Total: ${{total}}</h5>
+            <a id="continue_shopping_button" href="/front_allproducts">Continue Shopping</a>
+        </div>
+
+        <form class="" action="/billing_shipping" method="POST">
+        <div id="shipping">
+            <h4 class="h4">Shipping Information</h4>
+              {% csrf_token %}
+                <label class="label form-group">First Name: <input type="text" class="label form-group"  name="ship_first_name"></label>
+                <label class="label form-group">Last Name: <input type="text" class="label form-group" name="ship_last_name"></label>
+                <label class="label form-group">Address: <input type="text" class="label form-group" name="ship_address1"></label>
+                <label class="label form-group">Address 2: <input type="text" class="label form-group" name="ship_address2"></label>
+                <label class="label form-group">City: <input type="text" class="label form-group" name="ship_city"></label>
+                <label class="label form-group">State: <input type="text" class="label form-group" name="ship_state"></label>
+                <label class="label form-group">Zipcode: <input type="text" class="label form-group" name="ship_zip"></label>
+        </div>
+        <div id="billing">
+            <h4 class="h4">Billing Information</h4>
+                <label class="label form-group" id="checkbox"><input type="checkbox" id="same_as_shipping" name="same_as_shipping"> Same as Shipping</label>
+                <label class="label form-group">First Name: <input type="text" class="label form-group" name="bill_first_name"></label>
+                <label class="label form-group">Last Name: <input type="text" class="label form-group" name="bill_last_name"></label>
+                <label class="label form-group">Address: <input type="text" class="label form-group" name="bill_address1"></label>
+                <label class="label form-group">Address 2: <input type="text" class="label form-group" name="bill_address2"></label>
+                <label class="label form-group">City: <input type="text" class="label form-group" name="bill_city"></label>
+                <label class="label form-group">State: <input type="text" class="label form-group" name="bill_state"></label>
+                <label class="label form-group">Zipcode: <input type="text" class="label form-group" name="bill_zip"></label>
+                <br>
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_oM6TfazDfjAN0q5LsbbdsQ0L"
+                    data-amount=""
+                    data-name="Dope Vinyl"
+                    data-description="Purchasing a Record"
+                    data-image="http://i.ebayimg.com/00/s/NjkzWDY5Mw==/z/pnwAAMXQUmFSnGv5/$_12.JPG?set_id=880000500F"
+                    data-locale="auto">
+                </script>
+        </div>
+       <div id="bottom">
+
+       </div>
+    </body>
+</html>

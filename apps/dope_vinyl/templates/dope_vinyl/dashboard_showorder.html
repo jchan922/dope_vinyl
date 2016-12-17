@@ -1,0 +1,73 @@
+<html>
+<head>
+    <title>Dashboard Products</title>
+    {% load staticfiles %}
+    <!-- <link rel="stylesheet" type="text/css" href="./../css/dashboard_showorder.css"> -->
+    <link rel="stylesheet" href="{% static '/dope_vinyl/css/dashboard_showorder.css' %}" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+</head>
+<body>
+   <div id="container">
+        <div id="header">
+            <h4 id="logo">Dope.</h4>
+            <a href="/dashboard/orders">Orders</a>
+            <a href="/dashboard/products">Products</a>
+            <a id="logoff" href="/adminlogout">log off</a>
+        </div>
+        <div id="content">
+            <div id="address">
+                <h6>Order ID: {{info.orders.id}}</h6>
+                <div class='address'>
+                    <h6>Customer Shipping Info:</h6>
+                    <p>Name: {{info.orders.shipping.ship_first_name}}</p>
+                    <p>Address: {{info.orders.shipping.ship_address1}}</p>
+                    <p>City: {{info.orders.shipping.ship_city}}</p>
+                    <p>State: {{info.orders.shipping.ship_state}}</p>
+                    <p>Zip: {{info.orders.shipping.ship_zip}}</p>
+                </div>
+                <div class="address">
+                    <h6>Customer Billing Info:</h6>
+                    <p>Name: {{info.orders.billing.bill_first_name}}</p>
+                    <p>Address: {{info.orders.billing.bill_address1}}</p>
+                    <p>City: {{info.orders.billing.bill_city}}</p>
+                    <p>State: {{info.orders.billing.bill_state}}</p>
+                    <p>Zip: {{info.orders.billing.bill_zip}}</p>
+                </div>
+            </div>
+
+            <div id='order'>
+                       <table>
+                          <tr>
+                             <th>Prod ID</th>
+                             <th>Item</th>
+                             <th>Price</th>
+                             <th>Quantity</th>
+                             <th>Total</th>
+                          </tr>
+                          {% for product in products_in_order %}
+                          <tr>
+                             <td>{{product.products.id}}</td>
+                             <td>{{product.products.title}}</td>
+                             <td>{{product.products.price}}</td>
+                             <td>{{product.quantity}}</td>
+                             <td>${{product.total}}</td>
+                          </tr>
+                          {% endfor %}
+                       </table>
+                       <div id="lower_order">
+                         {% for product in products_in_order %}
+                       <p id="status">Status: {{product.orders.status}}</p>
+                           <div id="charges">
+                              <p>Sub total: ${{totaltotal}}</p>
+                              <p>Shipping: ${{shiptax}}</p>
+                              <p>Total Price: ${{finaltotal}}</p>
+                         {% endfor %}
+                           </div>
+                       </div>
+                   </div>
+                 </div>
+              </div>
+            </body>

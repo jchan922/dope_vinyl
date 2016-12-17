@@ -1,0 +1,220 @@
+html {
+    width: 1336px;
+    margin: auto;
+}
+
+#container {
+    width: 1336px;
+    margin: auto;
+    font-family: helvetica;
+}
+
+#header{
+   background-color: #D9534F;
+   padding: 15px;
+   margin-bottom: 20px;
+   color: white;
+}
+    #logo{
+    font-family: 'Pacifico', cursive;
+    display: inline-block;
+    margin: 0px 10px 0px 15px;
+    padding: 0px;
+    font-size: 34px;
+    }
+
+    #header a{
+        background-color: #D9534F;
+        text-decoration: none;
+        margin-left: 10px;
+        color: white;
+    }
+    #header #logoff{
+       margin-left: 935px;
+    }
+
+#search_form {
+    display: inline-block;
+    margin-left: 62px;
+    margin-bottom: 0px;
+}
+
+#search_bar{
+    border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
+    padding: 2px 300px 2px 10px;
+    font-size: 18px;
+}
+
+#add_product{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 428px;
+    color: white;
+    text-decoration: none;
+    border-style: solid;
+    border-width: medium;
+    font-size: 16px;
+    padding: 5px 20px;
+}
+
+table {
+    border-style: solid;
+    border-color: #e2e2e2;
+    margin-top: 25px;
+    width: 1200px;
+    margin-left: 62px;
+    margin-bottom: 100px;
+    padding-bottom: 300px;
+}
+
+    th {
+        background-color: #dbdbdb;
+        text-align: left;
+        margin: 10px 0px;
+        padding-right: 10px 30px 10px 0px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    th:nth-child(1) {
+        padding-left: 5px;
+    }
+
+    th:nth-child(2) {
+        padding-left: 10px;
+    }
+
+    th:nth-child(5) {
+        padding-left: 35px;
+    }
+
+    th:nth-child(7) {
+        padding-left: 15px;
+    }
+
+    td {
+        text-align: left;
+        font-size: 16px;
+        margin: 10px 0px;
+    }
+
+    td:nth-child(2) {
+        padding-left: 10px;
+    }
+
+    td:nth-child(5) {
+        padding-left: 35px;
+    }
+
+    td:nth-child(7) {
+        padding-left: 15px;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #e6f2ff
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin: 0px 0px 10px 0px;
+        width: 100%
+    }
+
+    input {
+        font-weight: normal;
+    }
+
+    .form-group {
+        margin-top: 40px;
+    }
+
+/*ADD PRODUCT FORM WITH JQUERY AND BOOTSTRAP*/
+
+h3 {
+    display: inline-block;
+}
+
+#addclose{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0px 0px 0px 390px;
+    padding: 0px;
+    font-size: 20px;
+    color: blue;
+}
+
+#editclose{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0px 0px 0px 360px;
+    padding: 0px;
+    font-size: 20px;
+    color: blue;
+}
+
+#artist {
+    margin-left: 130px;
+    padding-right: 135px;
+}
+
+#title {
+    margin-left: 140px;
+    padding-right: 135px;
+}
+
+#description {
+    margin-left: 83px;
+    padding-bottom: 200px;
+    padding-right: 135px;
+}
+
+#genre {
+    margin-left: 127px;
+    padding-right: 248px;
+}
+
+#genre_new {
+    margin-left: 30px;
+    padding-right: 137px;
+}
+
+#price {
+    margin-left: 128px;
+    padding-right: 137px;
+}
+
+#inventory {
+    margin-left: 94px;
+    padding-right: 137px;
+}
+
+#fileinput_label {
+    display: inline-block;
+    width: 100px;
+}
+
+#fileinput {
+    display: inline-block;
+    width: 325px;
+    margin-left: 75px;
+    border: 1px solid grey;
+}
+
+#bottom_links {
+    margin-left: 250px;
+    color: white;
+    margin-top: 0px;
+    text-align: left;
+}
+
+    #submit_button {
+        margin-left: 190px;
+    }

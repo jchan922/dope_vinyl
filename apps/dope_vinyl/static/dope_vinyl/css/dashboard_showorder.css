@@ -1,0 +1,169 @@
+html {
+    width: 1336px;
+    margin: auto;
+}
+
+#container {
+    width: 1336px;
+    margin: auto;
+    font-family: helvetica;
+}
+
+#header{
+   background-color: #D9534F;
+   padding: 15px;
+   margin-bottom: 20px;
+   color: white;
+}
+
+    #logo{
+    font-family: 'Pacifico', cursive;
+    display: inline-block;
+    margin: 0px 10px 0px 15px;
+    padding: 0px;
+    font-size: 34px;
+    }
+
+    #header a{
+        background-color: #D9534F;
+        text-decoration: none;
+        margin-left: 10px;
+        color: white;
+    }
+    #header #logoff{
+       margin-left: 935px;
+    }
+
+#search_form {
+    display: inline-block;
+    margin-left: 100px;
+    margin-bottom: 0px;
+}
+
+
+#address{
+   padding: 10px;
+   border-style: solid;
+   border-color: grey;
+   margin-left: 5px;
+   width: 310px;
+   display: inline-block;
+}
+
+   .address{
+      line-height: 8px;
+   }
+
+   #address h6{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-weight: bold;
+   }
+
+#order{
+    display: inline-block;
+    vertical-align: top;
+    width: 1000px;
+    margin-left: 10px;
+}
+table{
+   display: inline-block;
+   border-style: solid;
+   border-color: grey;
+}
+
+    th{
+       background-color: lightgrey;
+    }
+
+    th:nth-child(1) {
+        width: 100px;
+        padding: 5px 10px;
+    }
+
+    th:nth-child(2) {
+        width: 350px;
+        padding: 5px 0px;
+    }
+
+    th:nth-child(3) {
+        width: 350px;
+        padding: 5px 0px;
+    }
+
+    th:nth-child(4) {
+        width: 100px;
+        padding: 5px 0px;
+    }
+
+    th:nth-child(5) {
+        width: 100px;
+        padding: 5px 0px;
+    }
+
+    td:nth-child(1) {
+        width: 100px;
+        padding: 10px 10px;
+    }
+
+    td:nth-child(2) {
+        width: 350px;
+        padding: 10px 0px;
+    }
+
+    td:nth-child(3) {
+        width: 350px;
+        padding: 10px 0px;
+    }
+
+    td:nth-child(4) {
+        width: 100px;
+        padding: 10px 0px;
+    }
+
+    td:nth-child(5) {
+        width: 100px;
+        padding: 10px 0px;
+    }
+
+    th, td{
+        text-align: left;
+    }
+
+    tr {
+        margin-right: 100px;
+    }
+
+    tr:nth-child(odd) {background-color: #e6f2ff}
+
+#lower_order {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 50px;
+}
+
+    #status{
+        display: block;
+        vertical-align: top;
+        width: 280px;
+        border-style: solid;
+        border-color: grey;
+        margin-top: 5px;
+        margin-left: 720px;
+        padding: 5px;
+        background-color: #b3ffb3;
+        font-weight: bold;
+    }
+
+    #charges{
+        margin-top: 15px;
+        display: inline-block;
+        vertical-align: top;
+        border-color: grey;
+        width: 280px;
+        height: 135px;
+        margin-left: 720px;
+        padding: 15px 10px;
+        border-style: solid;
+        font-weight: bold;
+    }

@@ -1,0 +1,67 @@
+html {
+    width: 960px;
+    margin: auto;
+    font-family: helvetica;
+}
+
+body {
+    /*border: 3px dotted red;*/
+}
+
+#container {
+    margin-left: 275px;
+}
+
+    #header {
+        margin-top: 25px;
+    }
+
+        h3 {
+            display: inline-block;
+            margin-left: 0px;
+            margin-right: 150px;
+            margin-bottom: 30px;
+        }
+
+        #close_box {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+    #content{
+
+
+    }
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 0px 0px 10px 0px;
+            width: 100%
+        }
+
+        input {
+            font-weight: normal;
+        }
+
+        #description {
+            padding-bottom: 200px;
+        }
+
+        .form-group {
+            margin-top: 40px;
+        }
+
+        #fileinput {
+            display: inline-block;
+            width: 100px;
+        }
+
+        #input_file {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+    #bottom_links {
+        margin-top: 50px;
+        text-align: left;
+    }

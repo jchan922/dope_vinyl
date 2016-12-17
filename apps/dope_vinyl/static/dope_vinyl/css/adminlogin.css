@@ -1,0 +1,39 @@
+html {
+    width: 1336px;
+    margin: auto;
+    font-family: helvetica;
+}
+
+#h1 {
+    text-align: center;
+    margin-top: 200px;
+}
+
+    #logo {
+        font-family: 'Pacifico', cursive;
+        font-size: 48px;
+    }
+
+    form {
+        margin-top: 50px;
+        margin-left: 250px;
+    }
+
+    label {
+        display: block;
+        font-size: 14px;
+    }
+
+    input {
+        margin: 15px 15px;
+        padding: 10px 100px;
+    }
+
+    #submit_button {
+        margin: 10px 0px 0px 685px;
+        padding: 10px 55px;
+    }
+#center_message{
+  text-align: center;
+  color: red;
+}

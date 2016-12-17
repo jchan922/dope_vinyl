@@ -1,0 +1,108 @@
+html {
+    width: 1336px;
+    margin: auto;
+    font-family: helvetica;
+}
+
+#nav_bar {
+    background-color: #565656;
+    color: white;
+}
+
+    #h3 {
+        font-family: 'Pacifico', cursive;
+        display: inline-block;
+        margin-top: 15px;
+        margin-left: 25px;
+        margin-right: 1075px;
+        padding-bottom: 10px;
+        font-size: 34px;
+    }
+
+    #nav_bar a {
+        background-color: #565656;
+        color: white;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 22px;
+    }
+
+table {
+    width:100%;
+    border-style: solid;
+    border-color: grey;
+    margin-top: 25px;
+}
+
+    th {
+        background-color: #c4c4c4;
+        text-align: left;
+        padding: 5px;
+        margin: 0px;
+    }
+
+    td {
+        text-align: left;
+        padding: 5px;
+        margin: 0px;
+    }
+
+    #h5 {
+        text-align: right;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 0px;
+        margin: 20px 2px 5px 0px;
+    }
+
+
+    tr:nth-child(odd) {
+        background-color: #e6f2ff
+    }
+
+    #continue_shopping_button {
+        text-align: right;
+        margin-left: 1187px;
+}
+
+.h4 {
+    display: block;
+    font-size: 20px;
+    margin-left: 0px;
+}
+
+.label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+input {
+    border: 1px solid grey;
+    padding-right: 200px;
+}
+
+#billing {
+    display: inline-block;
+    width: 450px;
+}
+
+#shipping {
+    display: inline-block;
+    vertical-align: top;
+    width: 450px;
+    margin-left: 15px;
+}
+
+#checkbox {
+    display: inline-block;
+}
+
+.stripe-button-el{
+    margin-top: 0px;
+    margin-left: 266px;
+}
+
+#bottom {
+  height: 50px;
+}

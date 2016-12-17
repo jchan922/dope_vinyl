@@ -1,0 +1,120 @@
+html {
+    width: 1336px;
+    margin: auto;
+    font-family: helvetica;
+}
+
+#nav_bar {
+    background-color: #565656;
+    color: white;
+}
+
+    #h3 {
+        font-family: 'Pacifico', cursive;
+        display: inline-block;
+        margin-top: 15px;
+        margin-left: 25px;
+        margin-right: 1075px;
+        padding-bottom: 10px;
+        font-size: 34px;
+    }
+
+    #nav_bar a {
+        background-color: #565656;
+        color: white;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 22px;
+    }
+
+#go_back {
+    margin-left: 100px;
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+#h2 {
+    margin-top: 5px;
+    margin-left: 100px;
+}
+
+#thumbnail {
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 100px;
+    width: 500px;
+    height: 500px;
+}
+
+#content {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 15px;
+    width: 700px;
+}
+
+    #content_description {
+        display: inline-block;
+        vertical-align: top;
+        width: 480px;
+        height: 400px;
+        margin-top: 0px;
+        margin-left: 80px;
+        line-height: 23px;
+        overflow: scroll;
+        text-align: justify;
+    }
+
+    #content form {
+        display: inline-block;
+        vertical-align: top;
+        width: 450px;
+        margin-top: 0px;
+        margin-left: 375px;
+        font-size: 13px;
+        padding: 3px;
+    }
+    #content input{
+      font-size: 13px;
+      background-color: #3399ff;
+      color: white;
+   }
+
+#h4 {
+    margin-top: 25px;
+    margin-left: 100px;
+    padding: 0px;
+}
+
+ul {
+    margin-top: 25px;
+    margin-left: 100px;
+    padding: 0px;
+    margin-bottom: 5px;
+}
+
+li {
+    display: inline-block;
+    list-style: none;
+    width: 120px;
+    height: 120px;
+    vertical-align: top;
+}
+img#similar{
+   width: 120px;
+   height: 120px;
+   margin-bottom: 5px;
+}
+#similar{
+   margin-top: : 10px;
+   padding: 0px;
+   font-size: 12px;
+   display: block;
+   height: 155px;
+   width: 120px;
+   text-decoration: none;
+   color: black;
+}
+
+#buy {
+    padding: 10px 28px;

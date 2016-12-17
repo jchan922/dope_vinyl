@@ -1,0 +1,44 @@
+<html>
+<head>
+    {% load staticfiles %}
+    <title>Edit Products</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="./../css/dashboard_editproduct.css" media="screen" title="no title"> -->
+    <link rel="stylesheet" href="{% static 'dope_vinyl/css/dashboard_editproduct.css' %}" media="screen" title="no title">
+</head>
+<body>
+    <div id="container">
+
+        <div id="header">
+        <h3>Edit Product - ID #2</h3>
+        <a id="close_box" href=''>X</a>
+        </div>
+
+        <div id='content'>
+            <form action='edit/{{product.id}}'>
+            <label>Name <input type='text' name='title'></label>
+            <label>Description <input id="description" type='text' name='description'></label>
+
+            <label>Categories
+                <select class="custom-select">
+                    <option selected>Open this select menu</option>
+                    <option value="hiphop">Hip Hop<a href='edit'>edit</a><a href='delete'>delete</a></option>
+                    <option value="country">Country<a href='edit'>edit</a><a href='delete'>delete</a></option>
+                    <option value="pop">Pop<a href='edit'>edit</a><a href='delete'>delete</a></option>
+                    <option option value="rock">Rock<a href='edit'>edit</a><a href='delete'>delete</a></option>
+                </select>
+            </label>
+
+            <label>or add new category: <input type="text" name='genre'></label>
+            <div class="form-group">
+                <label id="fileinput" for="InputFile">File input</label>
+                <input id="input_file" type="file">
+            </div>
+        </div>
+        <div id="bottom_links">
+            <a href="">Cancel</a>
+            <a href="">Preview</a>
+            <a href="update/{{product.id}}">Update</a>
+        </div>
+    </div>
+</body>
